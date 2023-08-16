@@ -4,9 +4,10 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.neural_network import MLPRegressor
+
 import joblib
 
-
+from flask_cors import CORS, cross_origin
 
 
 
@@ -15,6 +16,7 @@ import joblib
 
 
 app = Flask(__name__)
+CORS(app)
 
 # Cargar y procesar los datos al iniciar la aplicación
 ruta_archivo = 'historical_data.csv'
@@ -30,6 +32,7 @@ model.fit(X_train_scaled, y)
 loaded_model = model
 loaded_scaler = scaler
 
+@cross_origin
 @app.route('/predict', methods=['POST'])
 def predict_potential():
     data = request.json
