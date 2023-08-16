@@ -6,6 +6,14 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.neural_network import MLPRegressor
 import joblib
 
+from flask_cors import CORS  # Importa la extensión CORS
+
+app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "*"}})  # Permite todas las solicitudes desde cualquier origen
+
+
+
+
 app = Flask(__name__)
 
 # Cargar y procesar los datos al iniciar la aplicación
